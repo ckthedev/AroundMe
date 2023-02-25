@@ -47,7 +47,7 @@ class LogView(FormView):
         if f.is_valid():
             us=f.cleaned_data.get("username")
             ps=f.cleaned_data.get("password")
-            authenticate(req,username=us,password=ps)
+            User=authenticate(req,username=us,password=ps)
             if User:
                 login(req,User)
                 messages.success(req," Login SuccessFull!!")
@@ -56,6 +56,8 @@ class LogView(FormView):
                  messages.error(req,"Login Failed!!")
                  return render(req,"Login.html",{"form":f})
 
+# class LogoutView(View)
 
-                #  dakdsfkjhdkjsfhkhdskjfh
+
+        
         

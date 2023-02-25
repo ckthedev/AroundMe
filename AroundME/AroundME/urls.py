@@ -23,5 +23,6 @@ urlpatterns = [
     path('account/',include("account.urls")),
     path('',Homepage.as_view(),name='Homepage'),
      path('Registration/',RegView.as_view(),name="Registration"),
-     path('Login/',LogView.as_view(),name="Login")
+     path('Login/',LogView.as_view(),name="Login"),
+     path('User/',include("User.urls")),
 ]
