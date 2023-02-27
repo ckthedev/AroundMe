@@ -21,7 +21,7 @@ class Bio(CreateView):
     def form_valid(self, form):
         form.instance.user=self.request.user
         self.object = form.save()
-        messages.success(self,request,"Bio Added!")
+        messages.success(self.request,"Bio Added!")
         return super().form_valid(form)
         
 
