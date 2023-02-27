@@ -1,0 +1,17 @@
+{% extends 'nav.html' %}
+{% block nav %}
+<h4 class="bg-info text-center">Add Bio</h4>
+<div class="jumbotron">
+    <form action="" method="poat" enctype="multipart/form-data">
+         {% csrf_token %}
+        <table class="table">
+            {{form.as_table}}
+        </table>
+        <tr>
+            <td>
+            <input type="Submit">
+        </td>
+        </tr>
+    </form>
+</div>
+{% endblock %}
