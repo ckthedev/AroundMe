@@ -3,7 +3,7 @@
 {% block nav %}
 {% load static %}
 
-<link href="stylesheet"  href="{% static 'css/style.css' %} ">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
 <section class="h-100 gradient-custom-2">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -14,12 +14,19 @@
                 <img src="{{request.user.bio_user.profile_pic.url}}"
                   alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
                   style="width: 150px; z-index: 1">
-                <button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark"
-                  style="z-index: 1;">
-                  {% if request.user.bio_user %}
+                <button type="button" class="btn btn-outline-dark">
                   <a href="{% url 'bio' %}">Add Bio</a>
                 </button>
               </div>
+              <div class="col-md-2">
+                {% if request.user.bio_user %}
+                <input class=" byn btn"  value=""><!-- profile.html -->
+                 <a href="{% url 'edit bio' %}">Edit Bio</a>
+
+                {% else %}
+                <input class="profile-edit-btn" type="submit"  name="btnAddMore" value="Add Bio" />
+                {% endif %}
+            </div>
               <div class="ms-3" style="margin-top: 130px;">
                 <h5>{{user.first_name}}{{user.last_name}}</h5>
                 <p>{{user.username}}</p>
@@ -45,6 +52,8 @@
               <div class="mb-5">
                 <h5 class="">{{request.user.first_name}} {{request.user.last_name}}</h5>
                 <div class="p-4" style="background-color: #f8f9fa;">
+                  <h1>{{ user.username }}</h1>
+                  <p>{{ user.edit.bio }}</p>
                   <p class="">{{request.user.bio_user.status}}</p>
                   <p class="">{{request.user.bio_user.dob}}</p>
                   <p class="">Gender:{{request.user.bio_user.gender}}</p>
@@ -58,7 +67,7 @@
 
                 </ul> -->
               </div>
-              <div class="d-flex justify-content-between align-items-center mb-4">
+              <!-- <div class="d-flex justify-content-between align-items-center mb-4">
                 <p class="lead fw-normal mb-0">Recent photos</p>
                 <p class="mb-0"><a href="#!" class="text-muted">Show all</a></p>
               </div>
@@ -80,17 +89,17 @@
                 <div class="col">
                   <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(114).webp"
                     alt="image 1" class="w-100 rounded-3">
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
         </div>
-      </div>bl
+      </div>
     </div>
   </section>
 
-  {% endif %}
-{% endblock %}
+  {% endblock %}
+
 
 
 <!-- <h1>{{ user.username }}</h1>

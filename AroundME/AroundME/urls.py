@@ -27,3 +27,4 @@ urlpatterns = [
      path('Login/',LogView.as_view(),name="Login"),
      path('User/',include("User.urls")),
 ]
+# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
