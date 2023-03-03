@@ -1,5 +1,5 @@
 from django import forms
-from .models import Bio,Edit
+from .models import Bio
 
 class BioForm(forms.ModelForm):
     class Meta:
@@ -12,11 +12,3 @@ class BioForm(forms.ModelForm):
         }
 
 
-class EditForm(forms.ModelForm):
-    class Meta:
-        model = Edit
-        exclude=["user"]
-        fields = ['bio', 'profile_pic']
-        widgets = {
-            'bio': forms.Textarea(attrs={'rows': 3}),
-        }

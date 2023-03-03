@@ -15,13 +15,16 @@
                   alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
                   style="width: 150px; z-index: 1">
                 <button type="button" class="btn btn-outline-dark">
+                  {% if request.user.bio_user %}
                   <a href="{% url 'bio' %}">Add Bio</a>
                 </button>
               </div>
               <div class="col-md-2">
-                {% if request.user.bio_user %}
-                <input class=" byn btn"  value=""><!-- profile.html -->
-                 <a href="{% url 'edit bio' %}">Edit Bio</a>
+                <!-- {% if request.user.bio_user %} -->
+                <input class=" byn btn"  value="">
+                 <a href="{% url 'edit bio' request.user.bio_user.id %}">Edit Bio</a>
+
+                 <input class=" byn btn"  value=""><a href="{% url 'change pswd' %}">Change Password</a>
 
                 {% else %}
                 <input class="profile-edit-btn" type="submit"  name="btnAddMore" value="Add Bio" />
@@ -98,6 +101,7 @@
     </div>
   </section>
 
+  {% endif %}
   {% endblock %}
 
 

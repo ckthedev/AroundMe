@@ -1,20 +1,28 @@
 {% extends 'nav.html' %}
 {% block nav %}
-<h1>Edit Bio</h1>
-<form method="post">
-    <div class="jumbotron">
-        <form action="" method="post" enctype="multipart/form-data">
+<h1 class="bg-info text-center">Edit Bio</h1>
+<div class="row">
+    <div class="col"></div>
+    <div class="col">
+        <form action="" enctype="multipart/form-data" method="post">
+
+    
+    </div>
+</div>
              {% csrf_token %}
             <table class="table">
                 {{form.as_table}}
-            </table>
-            <tr>
-                <td>
-                <button type="submit">Save Changes</button>
+          <tr>
+                <td colspan="2" class="text-center">
+                <button class="btn btn-success">Save Changes</button>
             </td>
-            </tr>
+        </tr>
+            </table>
+          
+            <div class="col"></div>
         </form>
     </div>
+    
 
 {% endblock %}
 

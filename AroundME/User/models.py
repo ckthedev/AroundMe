@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+# from django.db.models.signals import post_save
+# from django.dispatch import receiver
 
 # Create your models here.
 class Bio(models.Model):
@@ -18,15 +18,6 @@ class Bio(models.Model):
     profile_pic=models.ImageField(upload_to="user_profile_pictures",null=True)
     user=models.OneToOneField(User,on_delete=models.CASCADE,related_name="bio_user")
 
-
-
-class Edit(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.TextField(blank=True, null=True)
-    profile_pic = models.ImageField(upload_to='user_profile_pictures/', blank=True, null=True)
-
-    def __str__(self):
-        return self.user.username
 
 
 class Posts(models.Model):
