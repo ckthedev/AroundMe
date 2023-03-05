@@ -1,5 +1,5 @@
 from django import forms
-from .models import Bio
+from .models import Bio,Posts
 
 class BioForm(forms.ModelForm):
     class Meta:
@@ -11,4 +11,12 @@ class BioForm(forms.ModelForm):
             "gender":forms.Select(attrs={"class":"form-control"}),
         }
 
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Posts
+        fields = ["Image","caption"]
+        widgets={
+            "Image":forms.FileInput(),
+            "caption":forms.TextInput(),
+        }
 

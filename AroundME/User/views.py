@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.views.generic import View,CreateView,TemplateView,UpdateView
 from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth import logout,authenticate
 from .forms import BioForm
 from .models import Bio
 from django.urls import reverse_lazy
@@ -36,7 +37,8 @@ class EditView(UpdateView):
 class ChangePasswordView(PasswordChangeView):
     template_name = 'change pswd.html'
     success_url = reverse_lazy('profile')     
-        
+
+
         
     
     
