@@ -2,18 +2,45 @@ from django.shortcuts import render,redirect
 from django.views.generic import View,CreateView,TemplateView,UpdateView
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth import logout,authenticate
-from .forms import BioForm
-from .models import Bio
+from .forms import BioForm,PostForm
+from .models import Bio,Posts
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-class UserHome(TemplateView):
+
+class UserHome(CreateView):
     template_name="userhome.html"
-
-
+    form_class=PostForm
+    model=Posts
+    success_url=reverse_lazy("userhome")
+    def form_valid(self, form):
+        form.instance.user=self.request.user
+        messages.success(self.request,'Post Uploaded')
+        self.object=form.save()
+        return super().form_valid(form)
+    def get_context_data(self, **kwargs):
+        context=super().get_context_data(**kwargs)
+        context["data"]=Posts.objects.all().order_by('-datetime')
+        return context
+    
 class Profile(TemplateView):
-    template_name="profile.html"    
+    template_name="profile.html"
+    def get_context_data(self,**kwargs):
+        context=super().get_context_data(**kwargs)
+        context["data"]=Posts.objects.filter(user=self.request.user).order_by('-datetime')
+        return context
+
+
+
+
+class MyPostView(TemplateView):
+    template_name="post.html"
+    def get_context_data(self,**kwargs):
+        context=super().get_context_data(**kwargs)
+        context["data"]=Posts.objects.filter(user=self.request.user)
+        return context
+
 
 
 class BioView(CreateView):

@@ -14,9 +14,9 @@ class BioForm(forms.ModelForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Posts
-        fields = ["Image","caption"]
+        fields = ["image","caption"]
         widgets={
-            "Image":forms.FileInput(),
+            "image":forms.FileInput(),
             "caption":forms.TextInput(),
         }
 

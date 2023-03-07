@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path,include
 from account.views import Homepage,RegView,LogView
 from django.conf.urls.static import static
+from django.conf import settings
 
 
 urlpatterns = [
@@ -26,5 +27,4 @@ urlpatterns = [
      path('Registration/',RegView.as_view(),name="Registration"),
      path('Login/',LogView.as_view(),name="Login"),
      path('User/',include("User.urls")),
-]
-# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
