@@ -1,0 +1,20 @@
+{% extends 'nav.html' %}
+{% block nav %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}  
+<table class="table table-success">
+    {{form.as_table}}
+    {% if object.image %}
+    <tr>
+      <td>Recent Image:</td>
+      <td><img src="{{ object.image.url }}" alt="{{ object.caption }}" style="max-width: 60%;"></td>
+    </tr>
+    {% endif %}
+    <td colspan="2" class="text-center">
+    <button class="btn btn-success">Submit</button></td>
+
+</table>
+</form>
+
+{% endblock %}

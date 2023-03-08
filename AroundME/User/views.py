@@ -40,6 +40,24 @@ class MyPostView(TemplateView):
         context=super().get_context_data(**kwargs)
         context["data"]=Posts.objects.filter(user=self.request.user)
         return context
+    
+class PostEditView(UpdateView):
+    model=Posts
+    form_class=PostForm
+    template_name="edit post.html"
+    success_url=reverse_lazy("profile")
+    pk_url_kwarg="pk"
+
+class PostDeleteView(View):
+    def get (self,req,*args,**kwargs):
+        id=kwargs.get("pk")
+        posts=Posts.objects.get(id=id)
+        posts.delete()
+        messages.success(req,"staff Removed")
+        return redirect("userhome")   
+
+
+
 
 
 

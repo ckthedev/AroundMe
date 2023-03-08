@@ -102,14 +102,17 @@
   </section>
   <div>
     {% for i in data %}
-    <div class="card" style="width: 100%;">
+    <div class="card" style="width: 60%;">
       {% if i.image %}
       <img class="card-img-top" src="{{ i.image.url }}" alt="Card image cap">
       {% endif %}
       <div class="card-body">
         <h5 class="card-title">{{i.datetime}}</h5>
         <p class="card-text">{{i.caption}}</p>
-        
+        <div class="card-footer">
+          <a href="{% url 'edit post' i.id %}" class="btn btn-warning">Edit</a>
+          <a href="{% url 'post delete' i.id %}" class="btn btn-danger">Delete</a>
+        </div>
       </div>
     {% endfor %}
   </div>
