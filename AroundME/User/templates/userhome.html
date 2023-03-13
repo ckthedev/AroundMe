@@ -28,17 +28,65 @@
     </table>
     </form>
   </div>
+  <style>
+    .btn-danger.liked {
+  background-color: #f81606;
+  color: white;
+}
+
+.btn-danger .like-count {
+  margin-left: 5px;
+  font-size: 0.8em;
+}
+
+  </style>
+  
+
 
   {% for i in data %}
-  <div class="card" style="width: 50%;">
+  <div class="card" style="width: 30rem;">
     {% if i.image %}
-    <img class="card-img-top" src="{{ i.image.url }}" alt="Card image cap">
+    <img class="card-img-top mb-5 " src="{{i.image.url}}" alt="Card image cap">
     {% endif %}
     <div class="card-body">
       <h5 class="card-title">{{i.datetime}}</h5>
       <p class="card-text">{{i.caption}}</p>
+      <div class="card-footer">
+        <button class="btn btn-danger" onclick="this.classList.toggle('liked')">
+          <a href="{% url 'like' i.id %}" class="btn btn-secondary">Like{{ i.cntlikes.likes }}</a>
+         
+        </button>
+        
+        <a href="" class="btn btn-secondary">Comment</a>
+      </div>
     </div>
-  {% endfor %}
+
+    <div class="card-body">
+    <form method="post" action="{% url 'cmnt' i.id %}">
+
+      {% csrf_token %}
+      {{ cform.as_p }}
+      <button class="btn btn-success">submit</button>
+   
+  </form>
+  </div>
+  <div {% for c in comments %}>
+    {% if c.post.id == i.id %}
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">{{c.comment}}</h4>
+      <p class="card-text"> <strong>Posted On</strong> {{c.datetime}}></p>
+      <p class="card-text"> <strong>Posted By</strong> {{c.user.first_name}} {{c.user.last_name}}></p>
+      {% endif %}
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+    {% endfor %}
+
+
+
+
 
     <!-- {% comment %} <ul class="list-group list-group-flush">
       <li class="list-group-item">Cras justo odio</li>
